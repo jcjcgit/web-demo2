@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.bootcss.com/vue/2.6.10/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <my-component>
+            <span> hello vue</span>
+            <component-a>
+                <template #[name]>
+                    <!-- 插槽的名字可以是动态显示 放在括号里 -->
+                    <!-- #代表v-slot的缩写 注意 缩写时后面必须带有参数 否则无效 -->
+                    this is header content
+                </template>
+                <template #default>
+                    this is main content
+                </template>
+                <template #footer>
+                    this is footer content
+                </template>
+            </component-a>
+            <!-- 插槽里可以使用任意内容，包括其他的组件 -->
+            <component-b>
+                <template #default="slot">
+                    {{slot.user.firstName}}
+                </template>
+                <!-- 此为父级作用域的插槽内容 无法访问子级作用域 -->
+                <!-- 这里的slot为子级传来插槽prop的名字， 可以自己命名 ，然后就可以访问子级的内容了 -->
+
+                <!-- 当自有默认插槽时，可以把组件标签当做插槽模板使用 
+                    即
+                     <component-b #default="slot">
+                         {{slot.user.firstName}}
+                     </component-b>
+                -->
+            </component-b>
+        </my-component>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                name: 'header'
+            },
+            components: {
+                'my-component': {
+                    template: `
+                    <div>
+                        <h1>this is a template content</h1>
+                        <slot></slot> 
+                        
+                    </div>`
+                },
+                'component-a': {
+                    template: `<div id='container'>
+                        <header><slot name="header"></slot></header>
+                        <main><slot></slot></main>
+                        <footer><slot name="footer"></slot></footer>
+                    </div>`
+                },
+                'component-b': {
+                    data() {
+                        return {
+                            user: {
+                                firstName: 'Sansa',
+                                lastName: 'Stark'
+                            }
+                        }
+                    },
+                    template: `<h1><slot :user="user">{{user.lastName}}</slot></h1>`
+                    //父级插槽里的内容无法访问子级作用域 想要访问 可以在插槽slot上将子级数据作为插槽prop传给父级
+                },
+            }
+
+        })
+    </script>
+</body>
+
+</html>

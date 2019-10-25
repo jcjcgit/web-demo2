@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>\
+
+    <style>
+        div {
+            width: 200px;
+            height: 200px;
+            background: #000;
+            margin: 100px auto;
+            animation: jc 2s linear 2s;
+            animation-fill-mode: backwards; 
+            /* backwards是刚开始从第一帧显示 也就是等待状态从%0显示 */
+            /* forward是最后动画完成显示为动画结束的状态，而非恢复到原来的样子 */
+            /* both为两者都有 */
+        }
+
+        @keyframes jc {
+            0% {
+                transform: translateX(50px)
+            }
+            50% {
+                transform: rotate(45deg)
+            }
+            100% {
+                transform: rotate(60deg)
+            }
+        }
+
+
+    </style>
+</head>
+
+<body>
+    <div></div>
+</body>
+
+</html>

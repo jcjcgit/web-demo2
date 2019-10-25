@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        window.onload = function () {
+
+            var btn = document.querySelector('button');
+            var div = document.querySelector('div');
+            btn.onclick = function () {
+                var xtr;
+                if (window.XMLHttpRequest) {
+                    xtr = new XMLHttpRequest();
+                } else {
+                    xtr = new ActiveXObject('Microsoft.XMLHTTP');
+                }
+
+                xtr.open('get', 'ajax.txt', true);
+
+                xtr.setRequestHeader('myHeader', 'myValue');
+                xtr.onreadystatechange = function () {
+                    if (xtr.readyState === 4) {
+                        if (xtr.status === 200) {
+                            console.log('ajax')
+                        } else {
+                            console.log(xtr.status);
+                        }
+                    }
+                };
+
+                xtr.send();
+            }
+
+        }
+
+        function f() { //arguments 参数转化为数组
+            // 'use strict';
+            //方法1
+            var arr = [];
+            for (let i = 0; i < arguments.length; i++) {
+                arr.push(arguments[i]);
+            }
+
+            // 方法二
+            var a = Array.prototype.slice.call(arguments);
+            console.log(arr);
+            console.log(a);
+            console.log(arguments.callee === f); //arguments对象内部有一个callee参数，指向拥有arguments所在的函数
+        }
+
+        f(1, 2, 3);
+
+        (function () {
+            console.log('gggg')
+        })();
+        (function () {
+            console.log('gggg')
+        })(); //两个相连的匿名函数自调用后必须有逗号，否则报错 解释器会认为后面的匿名函数为前面的参数
+
+        true && function () {
+            console.log(555)
+        }();
+        ! function () {
+            /* code */
+        }();
+        ~ function () {
+            /* code */
+        }(); -
+        function () {
+            /* code */
+        }(); +
+        function () {
+            /* code */
+        }(); //任何以表达式形式的函数都可以调用函数
+
+
+        (function () {
+            'use strict';
+            var a = 2;
+            eval('a = 4');
+            eval('var a = 6');
+            eval('var foo = 6');
+            //严格模式下eval内部声明的变量不会影响到外面 注意是声明 可以读写当前作用域的变量
+            console.log(a);
+            // console.log(foo); //报错
+        })();
+
+        (function () {
+            var foo = 'bar';
+            var obj = {
+                foo: 1,
+                bar: 2
+            }
+            console.log(obj['foo']); //1
+            console.log(obj[foo]); //2 方括号里面必须加上引号，否则会当做变量处理
+
+            var obj2 = {
+                1: '22'
+            }
+
+            console.log(obj2[1]);
+            console.log(obj2['1']); //当键名为数值时，可不加引号，js会自动加上引号 如果是其他不符合标识符规则（空格，数值开头等）的键名，则必须加上引号
+            // console.log(obj2.1) //数值键名不能通过小数点形式访问
+        })();
+
+
+        (function () {
+            var obj = {
+                name: 'foo',
+                age: '12'
+            }
+
+            var obj2 = Object.preventExtensions(obj); //不可添加属性  所有属性的writable为true  emurable为true configurable为true
+            console.log(Object.getOwnPropertyDescriptors(obj2));
+
+            obj2 = Object.seal(obj); //不可添加属性 所有属性的writable为true   emurable为true configurable为false
+            console.log(Object.getOwnPropertyDescriptors(obj2));
+
+            obj2 = Object.freeze(obj); //不可添加属性 所有属性的writable为false  emurable为true configurable为false
+            console.log(Object.getOwnPropertyDescriptors(obj2));
+
+        })();
+
+        (function () {
+            var obj = {
+                foo: function () {
+                    console.log(this);
+                }
+            };
+
+            console.log(obj.foo()) // obj
+        }());
+    </script>
+
+    <style>
+        div {
+            width: 500px;
+            height: 500px;
+            background: #a10;
+        }
+
+        button {
+            width: 100px;
+            height: 100px;
+            margin: 50px 0 0 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <button>button</button>
+    </div>
+
+</body>
+
+</html>

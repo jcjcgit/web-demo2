@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link href="https://cdn.bootcss.com/font-awesome/5.10.2/css/all.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/vue/2.6.10/vue.js"></script>
+    <script src="https://cdn.bootcss.com/vue-router/3.1.3/vue-router.js"></script>
+</head>
+
+<body>
+    <span class="fa fa-camera-retro fa-4x"></span>
+    <span class="fa fa-ambulance fa-fw fa-10x fa-border pull-right"></span>
+    <span class="fa fa-heartbeat fa-spin"></span>
+    <div id="app">
+        <my-component :msg='msg'>
+            <template #header>header title</template>
+            <template #footer="props">{{props.text}}</template>
+        </my-component>
+    </div>
+    <script>
+        
+        Vue.component('my-component',{
+            props: {
+                       msg: String
+                   },
+            render: function (h) {
+                return h("div", {
+                    class: {
+                        foo: true,
+                        bar: false
+                    },
+                    style: {
+                        color: '#a10',
+                        fontSize: '20px'
+                    },
+                    attrs: {
+                        id: 'box'
+                    },
+                    on: {
+                        click: this.handleClick
+                    },
+                    nativeOn: {
+                        click: this.nativeClickHandler
+                    }
+                }, [
+                    h('header', this.$slots.header),  //render函数的插槽 相当于<div><header><slot></slot></header></div>
+                    h('footer', this.$scopedSlots.footer({ //作用域插槽 相当于<div><footer><slot :text="msg"></slot></footer></div>
+                    text: this.msg
+                }))] )
+            },
+            methods: {
+                handleClick () {
+                    this.$emit('nativeClickHandler')
+                }
+            }
+        });
+
+
+        new Vue({
+            el: '#app',
+            data: {
+                msg: 'render function'
+            },
+            methods: {
+                handleClick () {
+                    console.log ('app')
+                },
+                nativeClickHandler () {
+                    console.log('native')
+                }
+            },
+            
+        })
+      
+    </script>
+</body>
+
+</html>

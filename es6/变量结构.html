@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        {
+            let [x = 1] = [undefined];
+            // x // 1
+            //默认值采用===比较 只有等号右边数组成员严格等于undefined 才会采用默认值
+        }
+
+        {
+            let [x = 1] = [null];
+            // x // null
+        }
+
+        // 如果默认值是一个表达式，那么这个表达式是惰性求值的，即只有在用到的时候，才会求值。
+
+        {
+            //默认值可以引用解构赋值的其他变量，但该变量必须已经声明。
+            var [x = 1, y = x] = []; // x=1; y=1
+            var [x = 1, y = x] = [2]; // x=2; y=2
+            var [x = 1, y = x] = [1, 2]; // x=1; y=2
+            var [x = y, y = 1] = []; // ReferenceError: y is not defined
+        }
+
+        const obj1 = {};
+        const obj2 = {
+            foo: 'foo'
+        };
+        Object.setPrototypeOf(obj1, obj2);
+        const {
+            foo //对象的解构赋值可以取到继承的属性。
+        } = obj1;
+
+        console.log(foo);
+    </script>
+</body>
+
+</html>

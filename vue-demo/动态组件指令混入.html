@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.bootcss.com/vue/2.6.10/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <component :is="component"></component>
+        <button @click="component = 'component_b'">click me</button>
+        <input type="text" v-focus:foo = 'message'>
+        <h1 v-color="color">hello</h1>
+    </div>
+
+    <script>
+        var component_a = {
+            template: '<h1>Stark</h1>'
+        }
+
+        var component_b = {
+            template: '<h1>Sansa</h1>'
+        }
+
+        Vue.directive('focus', {
+            inserted (el,binding) {
+                console.log(el); //指令绑定的元素
+                console.log(binding.name); //指令名 不包括v-
+                console.log(binding.value); //指令值 此为stark
+                console.log(binding.expression); //指令表达式 此为message
+                console.log(binding.arg); //指令修饰符 此为foo
+            }
+
+         
+        })
+
+        Vue.directive('color', function (el, binding) {//指令函数的简写
+            el.style.color = binding.value
+        })
+
+        var myMixin = {
+            data() {
+                return {
+                    name: 'myMixin',
+                    message: 'stark',
+                    color: "#a10"
+                }
+            },
+            created() {
+                console.log('mixin')
+            },
+            methods: {
+                test() {
+                    console.log('test mixin')
+                }
+            }
+        }
+
+        Vue.mixin({
+            data() {
+                return {
+                    gender: 'female'
+                }
+            }
+        })
+
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                component: 'component_a',
+                message: 'sansa',
+                age: 25
+            },
+            components: {
+                component_a: component_a,
+                component_b: component_b
+            },
+            methods: {
+                foo() {
+                    console.log('foo')
+                },
+                test() {
+                    console.log('test self')
+                }
+            },
+            created() {
+                console.log('self');
+                console.log(this.$data);
+                console.log(this.gender)
+            },
+            mixins: [myMixin]
+            //混入时，data，methods，components等会被合并为一个对象，如有冲突，会取组件自身的 属性
+            // 对于钩子函数，混入会合并为一个数组，并且都会执行 mixin中钩子会先于实例钩子执行
+            //全局mixin会自动混入到每个实例中
+        })
+    </script>
+</body>
+
+</html>

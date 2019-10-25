@@ -1,0 +1,37 @@
+{
+  "id": "",
+  "name": "",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "1514195",
+      "name": "银行",
+      "font_class": "yinhang",
+      "unicode": "e73f",
+      "unicode_decimal": 59199
+    },
+    {
+      "icon_id": "6898917",
+      "name": "银行",
+      "font_class": "yinhang1",
+      "unicode": "e61e",
+      "unicode_decimal": 58910
+    },
+    {
+      "icon_id": "11238649",
+      "name": "点赞",
+      "font_class": "bianpinghuatubiaosheji-",
+      "unicode": "e62a",
+      "unicode_decimal": 58922
+    },
+    {
+      "icon_id": "11245493",
+      "name": "锁",
+      "font_class": "bianpinghuatubiaosheji-1",
+      "unicode": "e636",
+      "unicode_decimal": 58934
+    }
+  ]
+}

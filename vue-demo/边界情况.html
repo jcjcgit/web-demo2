@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.bootcss.com/vue/2.6.10/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <ul>
+            <li v-for="item in items" ref="name">{{item}}</li>
+            <!-- v-for循环的ref 通过vm.$ref.name取得是一个同名数组 -->
+        </ul>
+        <my-component ref="foo" inline-template>
+            <h3>dfasdg</h3>
+        </my-component>
+
+    </div>
+    <script>
+        Vue.component('my-component', {
+            data() {
+                return {
+                    user: {
+                        name: 'sansa'
+                    }
+                }
+            },
+            template: '<div><h1>{{this.$root.msg}}</h1><button @click="handleClick">change</button></div>',
+            //子组件通过实例的$root属性可以直接访问根组件的内容 对于小型应用比较方便 中大型应用应采用vuex
+            //子组件还可以通过实例的$parent直接访问父组件 
+            methods: {
+                handleClick() {
+                    this.$root.msg = 'hello Vue'
+                }
+            }
+        })
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                msg: 'hello wrold',
+                items: ['Stark', 'Dunst', 'Tracy']
+            }
+        })
+    </script>
+</body>
+
+</html>

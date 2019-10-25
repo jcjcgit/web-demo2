@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.bootcss.com/vue/2.6.10/vue.min.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <button @click="say('hello', $event)">
+            <!-- 内联可以传入$event对象 -->
+            hello
+        </button>
+        <a @click.prevent href="https://www.baidu.com">baidu</a>
+        <div :class="classObj" :style="styleObj1" @click="handleClick">
+            <!-- event.target 为触发事件的元素 event.currentTarget为事件注册的元素  事件修饰符self只有自身触发事件才会调用 即event.target为自身的情况-->
+            <span :style="styleObj2" @click.once="handleClick"></span>
+            <!-- once表示该事件只会触发一次 但是会向上冒泡 -->
+        </div>
+    </div>
+
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                message: 1,
+                classObj: {
+                    father: true,
+                },
+                styleObj1: {
+                    width: '300px',
+                    height: '300px',
+                    background: "#a10"
+                },
+                styleObj2: {
+                    width: '100px',
+                    height: '100px',
+                    background: "#000",
+                    display: 'block'
+                }
+            },
+            methods: {
+                say: function (message, event) {
+                    console.log(message, event.target)
+                },
+                handleClick: function (event) {
+                    console.log(event.currentTarget.nodeName)
+                },
+            }
+        })
+    </script>
+</body>
+
+</html>

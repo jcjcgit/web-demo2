@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        let a = 1;
+        console.log(a);
+        for (let i = 0; i < 4; i++) {
+            let i = 'Stark';
+            console.log(i)
+        }
+
+
+        // function bar(x = y, y = 2) { //报错 x = y 此时y还为声明，由于暂时性死区 必须先声明，后使用 
+        //     return [x, y];
+        // }
+        // bar(); 
+
+        {
+            let a = 1; //拥有块级作用域 ，不在需要匿名函数
+        }
+
+        function f(x, x, y = 1) {
+
+        }
+
+    </script>
+</body>
+
+</html>

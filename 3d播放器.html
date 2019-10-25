@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        html,
+        body {
+            background: url(./img/timg.jpg) no-repeat;
+            background-size: cover;
+            height: 100%;
+        }
+
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        ul {
+            list-style: none;
+            position: fixed;
+            bottom: 400px;
+            left: 50%;
+            margin-left: -50px;
+            width: 200px;
+            height: 200px;
+            transform-style: preserve-3d;
+            transform: rotateX(-10deg);
+            animation: spot 4s linear 0s infinite;
+        }
+
+        ul:hover {
+            animation-play-state: paused;
+        }
+
+
+        @keyframes spot {
+            from {
+                transform: rotateX(-10deg) rotateY(0deg);
+            }
+
+            to {
+                transform: rotateX(-10deg) rotateY(360deg);
+            }
+        }
+
+        li {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 200px;
+            height: 200px;
+            font-size: 60px;
+            line-height: 100px;
+            text-align: center;
+        }
+
+        li:nth-child(1) {
+            transform: rotateY(60deg) translateZ(200px)
+        }
+
+        li:nth-child(2) {
+            transform: rotateY(120deg) translateZ(200px)
+        }
+
+        li:nth-child(3) {
+            transform: rotateY(180deg) translateZ(200px)
+        }
+
+        li:nth-child(4) {
+            transform: rotateY(240deg) translateZ(200px)
+        }
+
+        li:nth-child(5) {
+            transform: rotateY(300deg) translateZ(200px)
+        }
+
+        li:nth-child(6) {
+            transform: rotateY(360deg) translateZ(200px)
+        }
+
+        ul li img {
+            width: 200px;
+            height: 200px;
+            border: 2px solid rgb(182, 235, 235);
+        }
+
+        ul:hover li img {
+            opacity: .5;
+        }
+
+        ul li img:hover {
+            opacity: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <ul>
+        <li><img src="./img/1.jpg" alt=""></li>
+        <li><img src="./img/2.jpg" alt=""></li>
+        <li><img src="./img/3.jpg" alt=""></li>
+        <li><img src="./img/4.jpg" alt=""></li>
+        <li><img src="./img/5.jpg" alt=""></li>
+        <li><img src="./img/1.jpg" alt=""></li>
+    </ul>
+</body>
+
+</html>

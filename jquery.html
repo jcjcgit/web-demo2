@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        div {
+            width: 1000px;
+            height: 500px;
+            margin: 100px auto;
+            position: relative;
+        }
+
+        .img {}
+
+        .img img {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: none;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .arrow {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            top: 50%;
+            margin-top: -25px;
+            font-size: 40px;
+            text-align: center;
+            line-height: 50px;
+            text-decoration: none;
+            background: #ccc;
+            opacity: .3;
+            display: none;
+        }
+
+        .prev {
+            left: 20px;
+        }
+
+        .next {
+            right: 20px;
+        }
+    </style>
+
+    <script>
+        $(function () {
+            var i = 0.
+            timer = null;
+            var $prev = $('.prev'),
+                $next = $('.next'),
+                $imgs = $('.img img')
+            $box = $('.box');
+
+            $box.hover(function () {
+                $('.arrow').fadeIn(200);
+                clearTimeout(timer);
+
+            }, function () {
+                $('.arrow').fadeOut(200);
+                time()
+            })
+
+            $next.click(function () {
+                if (i === 3) {
+                    i = -1;
+                }
+                $($imgs[++i]).fadeIn().siblings().fadeOut()
+            })
+
+            $prev.click(function () {
+                if (i === 0) {
+                    i = 4;
+                }
+                $($imgs[--i]).fadeIn().siblings().fadeOut()
+            })
+
+
+            function time() {
+                timer = setTimeout(function () {
+                    $next.click();
+                    time();
+                }, 3000)
+            }
+
+            setTimeout(time, 1000)
+
+        })
+    </script>
+</head>
+
+<body>
+    <div class="box">
+        <div class="img">
+            <img style="display: block;" src="./img/avg1.jpg" alt="">
+            <img src="./img/avg2.jpg" alt="">
+            <img src="./img/avg3.jpg" alt="">
+            <img src="./img/avg4.jpg" alt="">
+        </div>
+        <a href="#" class="arrow prev">></a>
+        <a href="#" class="arrow next">
+            <</a> <ul>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                </ul>
+    </div>
+
+</body>
+
+</html>

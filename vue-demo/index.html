@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.bootcss.com/vue/2.6.10/vue.min.js"></script>
+</head>
+
+<body>
+    <div id="app" >
+        {{message}}
+        <p v-show="seen" v-bind:[nameLi]="jc">显示状态</p>
+        <input v-model="message">
+        <button v-on:click="handleClick">btn</button>
+        <ul>
+            <li v-for="todu in todus">
+                {{todu.text}}
+            </li>
+        </ul>
+    </div>
+
+    <div id="app1">
+       
+        <button v-on:click="handleClick">change it</button>
+        <span v-html="color"></span>
+        <!-- 文本插值会输出html代码 需要引用html代码用v-html -->
+        <!-- 插值里面可以调用js的全局对象，如math，data等 用户自定义的无法调用 -->
+        <span>{{color}}</span> 
+    </div>
+
+    <script>
+        var app = new Vue({
+            el: "#app",
+            data: {
+                message: 'Bue',
+                title: 'jc',
+                seen: true,
+                nameli: 'title',
+                jc: 'jc',
+                todus: [{
+                    text: 1
+                }, {
+                    text: 2
+                }, {
+                    text: 3
+                }]
+            },
+            methods: {
+                handleClick: function () {
+                    this.message = 'ffff'
+                }
+            }
+        })
+
+        var data = {
+            number: 12
+        }
+
+        // Object.freeze(data)
+
+
+        var app1 = new Vue({
+            data: {
+                color: "<h1 style='color: #a10'>h1</h1>",
+              
+            },
+            methods: {
+                handleClick: function () {
+                    this.number = 1
+                }
+            },
+            watch: {},
+            beforeCreate: function () {
+                console.log('beforeCreate')
+            },
+            created: function () {
+                console.log('created')
+            },
+            beforeMount: function () {
+                console.log('beforemount')
+            },
+            mounted: function () {
+                console.log('mounted')
+            },
+            beforeUpdate: function () {
+                console.log('beofreUpdate')
+            },
+            updated: function () {
+                console.log('undated')
+            }
+        }).$mount('#app1')
+
+     
+    </script>
+</body>
+
+</html>

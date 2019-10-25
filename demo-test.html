@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+    <style>
+        div {
+            width: 300px;
+            height: 300px;
+            padding: 50px;
+            border: 10px solid;
+        }
+    </style>
+
+    <script>
+
+    </script>
+</head>
+
+<body>
+    <div>
+        <form action="">
+            <input type="radio" id="gender" name="gender">
+            <input type="radio" id="gender" name="gender">
+            <label for="gender">gender</label>
+            <input type="checkbox" value="">
+            <input type="text" id="txt" value="enter">
+            <select name="" id="">
+                <option value="">
+                    Apple
+                </option>
+                <option value="">
+                    Banana
+                </option>
+            </select>
+        </form>
+    </div>
+
+    <script>
+        var radio = document.getElementsByTagName('input')[0];
+        var ckx = document.getElementsByTagName('input')[1];
+        var sel = document.getElementsByTagName('select')[0];
+
+        var txt = document.getElementById('txt');
+
+        txt.oninput = function () {
+            //input事件 只有input，textarea的value值发生改变时即触发 
+            //注： 用js修改value值，不会触发函数
+            console.log(this.value)
+        }
+
+        radio.onchange = function () {
+            console.log('change')
+        }
+    </script>
+</body>
+
+</html>

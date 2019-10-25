@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.bootcss.com/vue/2.6.10/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <p>{{msg}}</p>
+        <abc :msg="msg" @input="updateValue"></abc>
+    </div>
+
+    <script>
+        Vue.component('abc', {
+            render: function (h) {
+                const self = this;
+                return h('input', {
+                    domDrops: {
+                        value: self.msg,
+                    },
+                    on: {
+                        input: function (event) {
+                            self.$emit('input', event.target.value)
+                        }
+                    }
+                }, )
+            },
+            props: {
+                msg: String
+            },
+          
+        })
+        
+        new Vue({
+            el: '#app',
+            data: {
+                msg: ''
+            },
+            methods: {
+                updateValue (val) {
+                    this.msg = val
+                }
+            }
+        })
+    </script>
+</body>
+</html>

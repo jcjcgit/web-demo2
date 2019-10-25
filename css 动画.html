@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div {
+            width: 500px;
+            height: 500px;
+            background: #a10;
+            overflow: hidden;
+        }
+
+        span {
+            width: 0;
+            border: 50px solid;
+            border-top-color: #fff;
+            border-right-color: #000;
+            border-left-color: blue;
+            border-bottom-color: yellow;
+            background: #fff;
+            display: block;
+            margin: 10px 0 0 10px;
+            /* transform: translate(100px, 100px) rotateZ(30deg) scale(2,1); */
+            /* transform: skew(50deg,50deg) */
+            /* transition: all 1s ease-out; */
+            animation: 2s sp ease-in alternate;
+            animation-fill-mode: both;
+
+        }
+
+        span:hover {
+            animation-play-state: paused;
+        }
+
+        @keyframes sp {
+            25% {
+                transform: translate(200px, 0)
+            }
+
+            100% {
+                transform: translate(200px, 200px)
+            }
+        }
+
+        /* 
+        span:hover {
+            transform: translateX(200px)  translateY(200px)   rotate(180deg);
+        } */
+    </style>
+</head>
+
+<body>
+    <div>
+        <span></span>
+    </div>
+</body>
+
+</html>

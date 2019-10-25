@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.bootcss.com/vue/2.6.10/vue.js"></script>
+    <style>
+        .test {
+            width: 300px;
+            background: #ccc;
+            height: 200px;
+            /* 一般情况下，一句话末尾的单词长度过长会超出元素width的时候，浏览器会默认换行显示，如果换行显示 宽度不够 那么它就会超出元素宽度 */
+            word-break: break-all;
+            /* word-break: break-all; 表示末尾长单词会将单词截断然后换行显示 */
+            word-wrap: break-word;
+            /* word-wrap: break-word; 表示末尾长单词会换到下一行显示  如宽度不够 会继续换行*/
+            white-space:nowrap; 
+            /* 强制不换行 */
+        
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <span></span>
+    </div>
+
+    <div class="test">
+        sdfsdgsa ggsdf sdfgfdsfssss sssssssss, sssssssssssssfdshhhhhhhhhhhhhhhhhhhhh
+    </div>
+
+    <script>
+        var mycomponent = {
+            template: '<h1>hello world</h1>'
+        }
+        new Vue({
+            el: '#app',
+            data: {
+                name: 'breaking the bad'
+            },
+            components: {
+                'my-component': mycomponent
+            },
+            template: `<div><h1>{{name}}</h1> <slot></slot></div>`
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        p {
+            width: 100px;
+            height: 100px;
+            border: 1px solid #333;
+        }
+    </style>
+
+
+</head>
+
+<body>
+    <p id="intro" style="color: #333" class="jc">Hello World!</p>
+    <input type="text" id="txt">
+    <input type="search" value="search">
+    <script>
+        var p = document.getElementById('intro');
+        p.onclick = function () {
+            console.log('click')
+        }
+
+        p.onmousedown = function () {
+            console.log('down')
+        }
+
+        p.onmouseup = function () {
+            console.log('up')
+        }
+
+        p.oncontextmenu = function () {
+            console.log('ontextmenu')
+        }
+
+        var txt = document.getElementById('txt');
+        txt.onchange = function () {
+            console.log('change')
+        }
+
+        txt.onkeydown = function () {
+            console.log('keydown')
+        }
+
+        txt.onkeyup = function () {
+            console.log('keyup')
+        }
+
+        txt.onkeypress = function () {
+            console.log('keypress')
+        }
+
+        window.onresize = function () {
+            console.log('resize')
+        }
+
+        document.onscroll = function () {
+            console.log('scroll')
+        }
+
+        txt.onblur = function () {
+            console.log('blur')
+        }
+
+        // txt.onfocusout = function () {
+        //     console.log('onfocusout')
+        // }
+
+        // txt.onfocus = function () {
+        //     console.log('focus')
+        // }
+
+        txt.addEventListener('focusin', function () { //focusin需要add来绑定事件 与focus区别在于不冒泡   相对的还有focusout
+            console.log('focusin')
+        })
+
+        var search = document.querySelector('input[type=search]');
+        console.log(search)
+        search.onsearch = function () {
+            console.log('search')
+        }
+    </script>
+</body>
+
+</html>

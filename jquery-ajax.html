@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+        $(function () {
+            $('button').click(function () {
+                $.get('ajax.txt', function (data,status) {
+                    console.log(data,status)
+                })
+            })
+        })
+    </script>
+    <script>
+        // window.onload = function () {
+
+        //     var btn = document.querySelector('button');
+        //     var div = document.querySelector('div');
+        //     btn.onclick = function () {
+        //         var xtr;
+        //         if (window.XMLHttpRequest) {
+        //             xtr = new XMLHttpRequest();
+        //         } else {
+        //             xtr = new ActiveXObject('Microsoft.XMLHTTP');
+        //         }
+
+        //         xtr.open('get', 'ajax.txt', true);
+        //         xtr.onreadystatechange = function () {
+        //             if (xtr.readyState === 4 && xtr.status === 200) {
+        //                 console.log(xtr.responseText)
+        //             } else {
+        //                 console.log(xtr.status);
+        //             }
+        //         };
+
+        //         xtr.send();
+        //     }
+
+        // }
+    </script>
+</head>
+
+<body>
+    <button>button</button>
+</body>
+
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.bootcss.com/vue/2.6.10/vue.js"></script>
+    <script src="https://cdn.bootcss.com/vue-router/3.1.3/vue-router.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <router-link to="/">/</router-link>
+        <router-link to="/other">/other</router-link>
+        <router-view></router-view>
+        <router-view name="a"></router-view>
+        <router-view name="b"></router-view>
+    </div>
+
+    <script>
+        const foo = {
+            template: '<h1>foo</h1>'
+        };
+
+        const bar = {
+            template: '<h1>bar</h1>'
+        };
+
+        const star = {
+            template: '<h1>star</h1>'
+        };
+
+        const router = new VueRouter({
+            routes: [{
+                path: '/',
+                name: 'user', //命名路由
+                redirect: '/home', //重定向 此意为匹配地址为/home 匹配的路由也是/home
+                alias: '/b', //别名 用户访问 /b 时，URL 会保持为 /b，但是路由匹配则为 /a，就像用户访问 /a 一样。
+                components: {
+                    default: foo,
+                    a: bar,
+                    b: star
+                }
+            }, {
+                path: '/other',
+                components: {
+                    default: star,
+                    a: bar,
+                    b: foo
+                }
+            }, {
+                path: '/home',
+                components: {
+                    default: foo,
+                    a: bar,
+                    b: star
+                }
+            }, ]
+        })
+        var vm = new Vue({
+            el: '#app',
+            router
+        })
+    </script>
+</body>
+
+</html>

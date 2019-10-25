@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.bootcss.com/vue/2.6.10/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <span>{{message|max(3)|cc(4)}}</span>
+    </div>
+
+    <script>
+        //extend是组件的构造器，接受一个和组件选项相同对象的参数 ，调用时和构造函数一样调用
+        // var Profile = Vue.extend({
+        //     data () {
+        //         return {
+        //             firstName: 'walter',
+        //             lastName: 'white',
+        //             fullName: 'breaking the bad'
+        //         }
+        //     },
+        //     template: '<h1>{{fullName}}</h1>'
+        // })
+
+        // new Profile().$mount('#app')
+        
+        
+        new Vue({
+            el: '#app',
+            data: {
+                message: 1
+            },
+            filters: {
+                max(value, num) {
+                    return value + num;
+                },
+                cc(value, num) {
+                    console.log(value + num)
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
