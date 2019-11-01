@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        (function () {
+            var datepicker = {};
+
+            datepicker.getMonthDate = function (year, month) {
+                var arr = [];
+
+                if (!year || !month) {
+                    year = new Date().getFullYear;
+                    month = new Date().getMonth + 1;
+                }
+
+                // 获取当月的最后一天 0会退回到上个月的最后一天
+                var currMonthDate = new Date(year, month, 0).getDate();
+
+                //获取上月的最后一天
+                var lastMonthDate = new Date(year, month - 1, 0).getDate()
+
+                //获取当月第一天星期几
+                var currMonthFirstDateDay = new Date(year, month - 1, 1).getDay();
+
+                //上月需要显示的天数 (例如当currMonthFirstDateDay等于2时，就是说当月1号为星期二，那么前面星期日，星期一，需要显示上月的最后两天)
+                var lastMonthCount = currMonthFirstDateDay;
+
+                var date = 0, //日期
+                    showDate = 0; //显示到页面的实际日期
+                    thisMonth = 0; //显示到页面的实际月份
+
+                for (let i = 0; i < 42; i++) {
+                    date = i + 1 - lastMonthCount;
+                    showDate = date;
+                    showMonth = month;
+
+                    if (date <= 0) {
+                        // 需要显示上个月的日期
+                        showDate = lastMonthDate + date;
+                        showMonth = month - 1;
+                    } else if (date > currMonthDate) {
+                        //需要显示的下月日期
+                        showDate = date - currMonthDate;
+                        showMonth = month + 1;
+                    }
+
+                    if (showMonth === 0) showMonth = 12;
+                    if (showMonth === 13) showMonth = 1;
+
+                    arr.push({
+                        showMonth: showMonth,
+                        showDate: showDate,
+                        date: date
+                    })
+                }
+
+                return {
+                    year: year,
+                    month: month,
+                    dates: arr
+                }
+
+
+            }
+
+            window.datepicker = datepicker;
+        })();
+
+
+        console.log(datepicker.getMonthDate(2019, 1));
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.bootcss.com/vue/2.6.10/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                message: 'hello vue'
+            },
+            methods: {
+                hello() {
+                    console.log('hello world')
+                }
+            },
+            beforeCreate() {
+                console.log('beforeCreate el', this.$el);
+                console.log('beforeCreate data', this.message);
+                console.log('beforeCreate methods', this.hello);
+            },
+            created() {
+                console.log('Create el', this.$el);
+                console.log('Create data', this.message);
+                console.log('Create methods', this.hello);
+            },
+            beforeMount() {
+                console.log('beforeMount el', this.$el);
+                console.log('beforeMount data', this.message);
+                console.log('beforeMount methods', this.hello);
+            },
+            mounted() {
+                console.log('Mountd el', this.$el);
+                console.log('Mountd data', this.message);
+                console.log('Mountd methods', this.hello);
+            }
+        })
+    </script>
+</body>
+
+</html>
